@@ -22,7 +22,13 @@ const ChatBuzzLogin = () => {
 
     setTimeout(() => {
       setIsLoggingIn(false);
-      console.log('Login attempted with:', { email, password });
+
+      // ✅ Store a fake token
+      localStorage.setItem('token', 'dummy-auth-token');
+
+      // ✅ Redirect to dashboard
+      console.log('Login successful, redirecting to dashboard...');
+      navigate('/dashboard');
     }, 1500);
   };
 
@@ -33,7 +39,6 @@ const ChatBuzzLogin = () => {
       </div>
 
       <div className={`w-full max-w-6xl mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10 transition-all duration-1000 ${isLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-        
         <div className={`space-y-8 transform transition-all duration-1000 delay-300 ${isLoaded ? 'translate-x-0 opacity-100' : '-translate-x-8 opacity-0'}`}>
           <div className="text-left">
             <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
@@ -60,7 +65,7 @@ const ChatBuzzLogin = () => {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required
-                    className="w-full px-4 py-4 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-300 hover:bg-slate-600 backdrop-blur-sm"
+                    className="w-full px-4 py-4 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-300 hover:bg-slate-600"
                   />
                 </div>
 
@@ -71,7 +76,7 @@ const ChatBuzzLogin = () => {
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     required
-                    className="w-full px-4 py-4 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-300 hover:bg-slate-600 backdrop-blur-sm pr-12"
+                    className="w-full px-4 py-4 bg-slate-700 border border-slate-600 rounded-xl text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-violet-500 transition-all duration-300 hover:bg-slate-600 pr-12"
                   />
                   <button
                     type="button"
@@ -108,12 +113,12 @@ const ChatBuzzLogin = () => {
           )}
         </div>
 
+        {/* Right-side animated mockup panel */}
         <div className={`flex items-center justify-center transform transition-all duration-1000 delay-500 ${isLoaded ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
           <div className="relative w-full max-w-md">
             <div className="relative bg-slate-200 rounded-2xl p-8 shadow-2xl">
               <div className="bg-slate-800 rounded-xl p-6 mb-4 relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-1 bg-violet-500"></div>
-
                 <div className="space-y-3">
                   <div className="flex items-center space-x-2 animate-pulse">
                     <div className="w-8 h-8 bg-violet-600 rounded-full flex items-center justify-center">
@@ -139,7 +144,7 @@ const ChatBuzzLogin = () => {
               <div className="w-32 h-3 bg-slate-500 rounded-full mx-auto mt-2"></div>
             </div>
 
-            
+            {/* Decorative bubbles */}
             <div className="absolute -top-4 -right-4 w-16 h-16 bg-violet-600 rounded-full flex items-center justify-center shadow-lg animate-bounce">
               <MessageCircle size={24} className="text-white" />
             </div>
