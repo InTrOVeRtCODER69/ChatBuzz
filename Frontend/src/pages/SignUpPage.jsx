@@ -15,14 +15,16 @@ const SignUpPage = () => {
   const [errors, setErrors] = useState({});
   const [agreeToTerms, setAgreeToTerms] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
       [name]: value
     }));
     if (errors[name]) {
-      setErrors(prev => ({
+      setErrors((prev) => ({
         ...prev,
         [name]: ''
       }));
@@ -64,16 +66,10 @@ const SignUpPage = () => {
     if (!validateForm()) return;
     setIsLoading(true);
     try {
+      // Simulate async signup and redirect to email verification
       setTimeout(() => {
         setIsLoading(false);
-        alert('Account created successfully!');
-        setFormData({
-          username: '',
-          email: '',
-          password: '',
-          confirmPassword: ''
-        });
-        setAgreeToTerms(false);
+        navigate('/verify'); 
       }, 1000);
     } catch (error) {
       setErrors({ submit: 'Network error. Please try again.' });
@@ -81,7 +77,6 @@ const SignUpPage = () => {
     }
   };
 
-  const navigate = useNavigate();
   const handleSignInRedirect = () => {
     navigate('/');
   };
@@ -102,6 +97,7 @@ const SignUpPage = () => {
           </div>
 
           <form className="space-y-4" onSubmit={handleSubmit}>
+            {/* Username */}
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-300">Username</label>
               <div className="relative">
@@ -118,6 +114,7 @@ const SignUpPage = () => {
               {errors.username && <p className="text-red-400 text-xs">{errors.username}</p>}
             </div>
 
+            {/* Email */}
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-300">Email ID</label>
               <div className="relative">
@@ -134,6 +131,7 @@ const SignUpPage = () => {
               {errors.email && <p className="text-red-400 text-xs">{errors.email}</p>}
             </div>
 
+            {/* Password */}
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-300">Password</label>
               <div className="relative">
@@ -157,6 +155,7 @@ const SignUpPage = () => {
               {errors.password && <p className="text-red-400 text-xs">{errors.password}</p>}
             </div>
 
+            {/* Confirm Password */}
             <div className="space-y-1">
               <label className="text-sm font-medium text-gray-300">Confirm Password</label>
               <div className="relative">
@@ -180,6 +179,7 @@ const SignUpPage = () => {
               {errors.confirmPassword && <p className="text-red-400 text-xs">{errors.confirmPassword}</p>}
             </div>
 
+            {/* Terms and Conditions */}
             <div className="flex items-start space-x-2">
               <input
                 type="checkbox"
@@ -194,12 +194,14 @@ const SignUpPage = () => {
             </div>
             {errors.terms && <p className="text-red-400 text-xs">{errors.terms}</p>}
 
+            {/* Submit error */}
             {errors.submit && (
               <div className="bg-red-500/10 border border-red-500/30 rounded-lg p-3">
                 <p className="text-red-400 text-xs">{errors.submit}</p>
               </div>
             )}
 
+            {/* Submit Button */}
             <button
               type="submit"
               disabled={isLoading}

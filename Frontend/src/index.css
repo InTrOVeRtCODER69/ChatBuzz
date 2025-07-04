@@ -2,3 +2,20 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+/// for the photopage wala part to make the bottom white part disappear
+html, body, #root {
+  height: 100%;          /* Make them take up 100% of the viewport height */
+  width: 100%;             /* Make them take up 100% of the viewport width */
+  margin: 0;              /* Remove default browser margins */
+  padding: 0;              /* Remove default browser padding */
+  overflow-x: hidden;            /* Prevent horizontal scrollbars from appearing */
+}
+
+body {
+  /* This is a safeguard: if your main app div somehow doesn't cover the entire body,
+     this ensures the body's background itself is dark, not white. */
+  background-color: #0F172A; /* Tailwind's slate-900 color */
+}
+
