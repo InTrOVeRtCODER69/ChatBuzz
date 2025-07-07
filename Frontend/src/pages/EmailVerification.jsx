@@ -87,6 +87,12 @@ const EmailVerification = () => {
     }
   };
 
+  // --- NEW HANDLER FOR EDIT INFORMATION ---
+  const handleEditInformation = () => {
+    navigate('/signup'); // Navigates back to the signup page
+  };
+  // ----------------------------------------
+
   const isCodeComplete = code.every((digit) => digit !== '');
 
   return (
@@ -188,7 +194,10 @@ const EmailVerification = () => {
 
         {/* Edit Info Button */}
         <motion.div className="mt-8" whileTap={{ scale: 0.95 }}>
-          <button className="bg-blue-200 hover:bg-blue-300 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+          <button
+            onClick={handleEditInformation} // Added onClick handler here
+            className="bg-blue-200 hover:bg-blue-300 text-blue-700 px-4 py-2 rounded-lg text-sm font-medium transition-colors"
+          >
             EDIT INFORMATION
           </button>
         </motion.div>

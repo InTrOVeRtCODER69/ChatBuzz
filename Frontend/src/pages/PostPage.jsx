@@ -527,18 +527,19 @@ const PostPage = () => {
           {['Posts', 'About', 'Photos', 'Videos', 'Friends'].map((tab) => (
             <motion.button
               key={tab}
-              onClick={() => {
-                // Navigate to specific routes for certain tabs
-                if (tab === 'Friends') {
-                  navigate('/profile/friends');
-                } else if (tab === 'Videos') {
-                  navigate('/profile/videos');
-                } else if (tab === 'Photos') {
-                  navigate('/Profile/Photos');
-                } else {
-                  setActiveTab(tab);
-                }
-              }}
+    onClick={() => {
+      if (tab === 'Friends') {
+        navigate('/profile/friends');
+      } else if (tab === 'Videos') {
+        navigate('/profile/videos');
+      } else if (tab === 'Photos') {
+        navigate('/profile/photos');
+      } else if (tab === 'About') {
+        navigate('/profile/about');
+      } else {
+        setActiveTab(tab);
+      }
+    }}
               role="tab"
               aria-selected={activeTab === tab}
               className={`py-3 px-1 border-b-2 transition-all duration-300 text-sm sm:text-base font-medium relative group ${
@@ -727,7 +728,9 @@ const PostPage = () => {
                 </motion.div>
               )}
 
+              
               {/* Other tab content placeholders */}
+
               {activeTab !== 'Posts' && (
                 <motion.div
                   key={`${activeTab}-tab`} // Unique key for AnimatePresence
@@ -749,5 +752,6 @@ const PostPage = () => {
     </div>
   );
 };
+
 
 export default PostPage;
